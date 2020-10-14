@@ -1,4 +1,5 @@
 # bank_soal
 Make a module for storing question and answer
 
-[a link](https://github.com/creativetimofficial/argon-dashboard)
+Template From Creative Tim: Argon Dashboard
+[https://github.com/creativetimofficial/argon-dashboard](https://github.com/creativetimofficial/argon-dashboard)
