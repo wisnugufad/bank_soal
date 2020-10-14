@@ -1,5 +1,6 @@
 .DS_Store
 examples/
+docs/
 index.html
 CHANGELOG.md
 ISSUE_TEMPLATE.md
