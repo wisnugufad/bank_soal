@@ -7,11 +7,11 @@
           <span class="middle"></span>
           <span class="bottom"></span>
         </div>
-          <a href="index.html" class="navbar-brand"> 
-            <b>MIMIN</b>
+          <a href="#" class="navbar-brand"> 
+            <b>BANK SOAL</b>
           </a>
 
-        <ul class="nav navbar-nav search-nav">
+        <!-- <ul class="nav navbar-nav search-nav">
           <li>
               <div class="search">
               <span class="fa fa-search icon-search" style="font-size:23px;"></span>
@@ -22,13 +22,13 @@
               </div>
             </div>
           </li>
-        </ul>
+        </ul> -->
 
         <ul class="nav navbar-nav navbar-right user-nav">
           <li class="user-name"><span>Akihiko Avaron</span></li>
             <li class="dropdown avatar-dropdown">
               <img src="../asset/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
-              <ul class="dropdown-menu user-dropdown">
+              <!-- <ul class="dropdown-menu user-dropdown">
                 <li><a href="#"><span class="fa fa-user"></span> My Profile</a></li>
                 <li><a href="#"><span class="fa fa-calendar"></span> My Calendar</a></li>
                 <li role="separator" class="divider"></li>
@@ -39,8 +39,9 @@
                   <li><a href=""><span class="fa fa-power-off "></span></a></li>
                 </ul>
               </li>
-            </ul>
+            </ul> -->
           </li>
+          <li><a href="#"><span class="fa fa-power-off "></span></a></li>
           <!-- <li ><a href="#" class="opener-right-menu"><span class="fa fa-coffee"></span></a></li> -->
         </ul>
       </div>
