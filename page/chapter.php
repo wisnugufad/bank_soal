@@ -2,7 +2,9 @@
   include('../models/connection.php');
   include('../models/chapter.php');
 
-  $sql = "SELECT a.*, b.name as subject_name FROM chapter as a JOIN subject as b ON b.id = a.subject_id";
+  $sql = "SELECT a.*, b.name as subject_name, c.name as jenjang FROM chapter as a
+  JOIN subject as b ON b.id = a.subject_id
+  JOIN jenjang AS c ON b.jenjang_id = c.id";
   $query = MYSQLI_QUERY($connect,$sql);
 
   $sqlSubject = "SELECT a.*, b.name as jenjang_name FROM subject as a JOIN jenjang as b ON b.id = a.jenjang_id";
@@ -72,6 +74,7 @@
                         <tr>
                           <th hidden>Id</th>
                           <th hidden>subject_id</th>
+                          <th>Jenjang</th>
                           <th>Subject</th>
                           <th>Chapter Name</th>
                           <th style="width: 150px !important;">#</th>
@@ -84,6 +87,7 @@
                         <tr>
                           <td hidden><?php echo $row['id'] ?></td>
                           <td hidden><?php echo $row['subject_id'] ?></td>
+                          <td><?php echo $row['jenjang'] ?></td>
                           <td><?php echo $row['subject_name'] ?></td>
                           <td><?php echo $row['name'] ?></td>
                           <td style="width: 150px !important;">

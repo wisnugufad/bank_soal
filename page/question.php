@@ -7,6 +7,30 @@
 
   $sqlSubject = "SELECT a.*, b.name as jenjang_name FROM subject as a JOIN jenjang as b ON b.id = a.jenjang_id";
   $querySubject = MYSQLI_QUERY($connect,$sqlSubject);
+
+  $sqlTaxonomy = "SELECT * FROM taxonomy";
+  $queryTaxonomy = MYSQLI_QUERY($connect,$sqlTaxonomy);
+
+  function abc($i)
+  {
+    switch ($i) {
+      case '0':
+        echo "A. ";
+        break;
+      case '1':
+        echo "B. ";
+        break;
+      case '2':
+        echo "C. ";
+        break;
+      case '3':
+        echo "D. ";
+        break;
+      default:
+        echo "E. ";
+        break;
+    }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -123,7 +147,7 @@
                     <input hidden type="text" name="type" id="type">
 
                     <div class="row">
-                      <div class="col-md-5">
+                      <div class="col-md-4">
                         <label for="subject_id">Subject:</label>
                         <select name="subject_id" id="subject_id" class="form-control">
                           <?php 
@@ -135,10 +159,62 @@
                           ?>
                         </select>
                       </div>
-                      <div class="col-md-5">
-                        <label for="name" >Name:</label>
-                        <input class="form-control" type="text" name="name" id="name" required autocomplete="off">
+                      <div class="col-md-4">
+                        <label for="chapter_id">Chapter:</label>
+                        <select name="chapter_id" id="chapter_id" class="form-control">
+                          <?php 
+                            while ($rowChapter = MYSQLI_FETCH_ASSOC($queryChapter)) {
+                          ?>
+                              <option value="<?php echo $rowChapter['id']; ?>"><?php echo $rowChapter['name']; ?></option>
+                          <?php
+                            }
+                          ?>
+                        </select>
                       </div>
+                      <div class="col-md-4">
+                        <label for="taxonomy_id">Taxonomy:</label>
+                        <select name="taxonomy_id" id="taxonomy_id" class="form-control">
+                          <?php 
+                            while ($rowSubject = MYSQLI_FETCH_ASSOC($queryTaxonomy)) {
+                          ?>
+                              <option value="<?php echo $rowSubject['id']; ?>"><?php echo "(".$rowSubject['cognitive'].") - ".$rowSubject['name']; ?></option>
+                          <?php
+                            }
+                          ?>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- form text -->
+                    <label for="name" style="margin-top: 10px;">Text 1:</label>
+                    <textarea class="form-control" name="text1" id="text1" required autocomplete="off" ></textarea>
+
+                    <label for="name" style="margin-top: 10px;">Image:</label>
+                    <input class="form-control" type="file" name="image" id="image">
+
+                    <label for="name" style="margin-top: 10px;">Text 2:</label>
+                    <textarea class="form-control" name="text2" id="text2" required autocomplete="off" ></textarea>
+                    
+                    <!-- answer question -->
+                    <label for="name" style="margin-top: 10px;">
+                      Answer (mark the right answer) :
+                    </label>
+                    <div class="row">
+                      <?php 
+                        for ($i=0; $i < 5 ; $i++) { 
+                      ?>
+                      <div class="col-lg-6" style="margin-top: 10px;">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <?php abc($i) ?>
+                            <input type="radio" name='answer[]'>
+                          </span>
+                          <input type="text" class="form-control" name='is_true[]'>
+                        </div><!-- /input-group -->
+                      </div>
+                      <?php
+                        }
+                      ?>
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -204,6 +280,19 @@
         
         $('#datatables-example').DataTable();
 
+        $("#subject_id").change(function(){
+      	var subject_id = $("#subject_id").val();
+          	$.ajax({
+          		type: 'POST',
+              	url: "../models/get_chapter.php",
+              	data: {subject_id: subject_id},
+              	cache: false,
+              	success: function(msg){
+                  $("#chapter_id").html(msg);
+                }
+            });
+        });
+
 
         $('.addBtn').on('click',function() {
 
@@ -214,6 +303,8 @@
           $('#type').val('add');
           $('#name').val('');
           $('#subject_id').val('');
+          $('#chapter_id').val('');
+          $('#taxonomy_id').val('');
         })
 
         $('.editBtn').on('click',function() {
