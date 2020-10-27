@@ -1,9 +1,12 @@
 <?php 
   include('../models/connection.php');
-  include('../models/jenjang.php');
+  include('../models/chapter.php');
 
-  $sql = "SELECT * FROM jenjang";
+  $sql = "SELECT a.*, b.name as subject_name FROM chapter as a JOIN subject as b ON b.id = a.subject_id";
   $query = MYSQLI_QUERY($connect,$sql);
+
+  $sqlSubject = "SELECT a.*, b.name as jenjang_name FROM subject as a JOIN jenjang as b ON b.id = a.jenjang_id";
+  $querySubject = MYSQLI_QUERY($connect,$sqlSubject);
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +52,7 @@
                   <div class="panel-body">
                       <div class="col-md-6 col-sm-12">
                         <h3 class="animated fadeInLeft">
-                          Tingkat / Jenjang
+                          Bab / Chapter
                         </h3>
                       </div>
                     <div class="col-md-6 col-sm-12">
@@ -68,8 +71,9 @@
                       <thead>
                         <tr>
                           <th hidden>Id</th>
-                          <th>Name</th>
-                          <th>Cognitif</th>
+                          <th hidden>subject_id</th>
+                          <th>Subject</th>
+                          <th>Chapter Name</th>
                           <th style="width: 150px !important;">#</th>
                         </tr>
                       </thead>
@@ -79,8 +83,9 @@
                         ?>
                         <tr>
                           <td hidden><?php echo $row['id'] ?></td>
+                          <td hidden><?php echo $row['subject_id'] ?></td>
+                          <td><?php echo $row['subject_name'] ?></td>
                           <td><?php echo $row['name'] ?></td>
-                          <td><?php echo $row['description'] ?></td>
                           <td style="width: 150px !important;">
                             <button class="btn btn-warning btn-sm editBtn" id="edit">edit</button>
                             <button class="btn btn-danger btn-sm deleteBtn" id="hapus">hapus</button>
@@ -110,10 +115,18 @@
                   <div class="modal-body">
                         <input hidden type="text" name="id" id="id">
                         <input hidden type="text" name="type" id="type">
-                        <label for="name">Name:</label>
+                        <label for="subject">Subject:</label>
+                        <select name="subject_id" id="subject_id" class="form-control">
+                          <?php 
+                            while ($rowSubject = MYSQLI_FETCH_ASSOC($querySubject)) {
+                          ?>
+                              <option value="<?php echo $rowSubject['id']; ?>"><?php echo $rowSubject['jenjang_name']." - ".$rowSubject['name']; ?></option>
+                          <?php
+                            }
+                          ?>
+                        </select>
+                        <label for="name" style="margin-top: 10px;">Name:</label>
                         <input class="form-control" type="text" name="name" id="name" required autocomplete="off">
-                        <label for="name" style="margin-top: 10px;">Deskripsi:</label>
-                        <input class="form-control" type="text" name="description" id="description" required autocomplete="off">
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -187,11 +200,11 @@
           $('#id').val('');
           $('#type').val('add');
           $('#name').val('');
-          $('#description').val('');
+          $('#subject_id').val('');
         })
 
         $('.editBtn').on('click',function() {
-
+          
           $('#addModal').modal('show');
           $('#addModalLabel').text('Edit');
 
@@ -199,11 +212,11 @@
           var data = $tr.children('td').map(function() {
             return $(this).text();
           }).get();
-
+          console.log(data);
           $('#id').val(data[0]);
           $('#type').val('edit');
-          $('#name').val(data[1]);
-          $('#description').val(data[2]);
+          $('#name').val(data[3]);
+          $('#subject_id').val(data[1]);
         })
 
         $('.deleteBtn').on('click',function() {

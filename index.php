@@ -41,7 +41,7 @@
 
       <div class="container">
 
-        <form class="form-signin centered" action="models/auth.php" method="post">
+        <form class="form-signin centered" action="models/auth.php" method="post" autocomplete="off">
           <div class="panel periodic-login">
               <!-- <span class="atomic-number">28</span> -->
               <div class="panel-body text-center">
@@ -52,7 +52,7 @@
 
                   <i class="icons icon-arrow-down"></i>
                   <div class="form-group form-animate-text" style="margin-top:10px !important;">
-                    <input type="text" class="form-text" name="username" required>
+                    <input type="text" class="form-text" name="username" required autocomplete="off">
                     <span class="bar"></span>
                     <label>Username</label>
                   </div>

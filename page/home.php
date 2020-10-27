@@ -45,7 +45,7 @@
                 <div class="panel">
                   <div class="panel-body">
                       <div class="col-md-6 col-sm-12">
-                        <h3 class="animated fadeInLeft">Customer Service</h3>
+                        <h2 class="animated fadeInLeft">Dashboard</h2>
                         <p class="animated fadeInDown"><span class="fa  fa-map-marker"></span> Batavia,Indonesia</p>
 
                         <!-- <ul class="nav navbar-nav">
@@ -87,7 +87,11 @@
                   </div>                    
                 </div>
                 <div class="col-md-12" style="padding:20px;">
-                      <h1>TEMPLATE HERE</h1>
+                  <div class="panel">
+                      <div class="panel-body">
+                        <h1>TEMPLATE HERE</h1>
+                      </div>
+                  </div>
                 </div>
           <!-- end: content -->          
       </div>

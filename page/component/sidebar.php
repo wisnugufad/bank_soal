@@ -4,8 +4,8 @@
       <ul class="nav nav-list">
           <li><div class="left-bg"></div></li>
           <li class="time">
-            <h1 class="animated fadeInLeft">21:00</h1>
-            <p class="animated fadeInRight">Sat,October 1st 2029</p>
+            <h1>21:00</h1>
+            <p>Sat,October 1st 2029</p>
           </li>
           <!-- <li class="active ripple">
             <a class="tree-toggle nav-header"><span class="fa-home fa"></span> Dashboard 
@@ -34,7 +34,7 @@
                 <li><a href="subject.php">
                   <span class="icon icon-options-vertical"></span>Mata Pelajaran</a>
                 </li>
-                <li><a href="theory.php">
+                <li><a href="chapter.php">
                   <span class="icon icon-options-vertical"></span>Bab</a>
                 </li>
                 <li><a href="taxonomy.php">
@@ -44,7 +44,7 @@
           </li>
 
           <li class="ripple">
-            <a href="question.php">
+            <a href="#">
               <span class="fa-university fa">
               </span>Bank Soal</a>
           </li>

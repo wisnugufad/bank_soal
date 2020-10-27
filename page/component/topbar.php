@@ -1,3 +1,6 @@
+<?php 
+  include('../models/session.php');
+?>
 <!-- start: Header -->
 <nav class="navbar navbar-default header navbar-fixed-top">
     <div class="col-md-12 nav-wrapper">
@@ -25,7 +28,7 @@
         </ul> -->
 
         <ul class="nav navbar-nav navbar-right user-nav">
-          <li class="user-name"><span>Akihiko Avaron</span></li>
+          <li class="user-name"><span><?php echo $_SESSION["name"]; ?></span></li>
             <li class="dropdown avatar-dropdown">
               <img src="../asset/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
               <!-- <ul class="dropdown-menu user-dropdown">
@@ -41,7 +44,7 @@
               </li>
             </ul> -->
           </li>
-          <li><a href="#"><span class="fa fa-power-off "></span></a></li>
+          <li><a href="../models/logout.php" data-toggle="tooltip" data-placement="bottom" title="Sign Out!"><span class="fa fa-power-off "> Sign Out</span></a></li>
           <!-- <li ><a href="#" class="opener-right-menu"><span class="fa fa-coffee"></span></a></li> -->
         </ul>
       </div>

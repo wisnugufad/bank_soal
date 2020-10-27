@@ -13,9 +13,9 @@
     if (!$result || count($row) < 1) {
         header('location: ../index.php');
     }else{
-
         SESSION_START();
         $_SESSION["username"] = $row['username'];
+        $_SESSION["name"] = $row['name'];
         header('location: ../page/home.php');
     }    
   }
